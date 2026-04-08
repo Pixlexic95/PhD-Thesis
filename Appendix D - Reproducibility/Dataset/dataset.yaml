@@ -1,0 +1,10 @@
+﻿# train and val data
+train: "C:/path/"
+val: "C:/path/"
+test: "C:/path/"
+
+# number of classes
+nc: 16
+
+# class names
+names: ['Fish', 'Crustacean', 'Jellyfish', 'Coral', 'Wood', 'Seaweed', 'Shell', 'Plastic Wrapper', 'Plastic Container', 'Metal Container', 'Net', 'Plastic Object', 'Metal Object', 'Cloth', 'Glass','Rubber']
