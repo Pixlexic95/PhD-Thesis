@@ -33,7 +33,6 @@ def stratified_split(img_dir, label_dir, out_dir, train_ratio=0.7, val_ratio=0.2
     assert abs((train_ratio + val_ratio + test_ratio) - 1.0) < 1e-6, "Splits must sum to 1"
     random.seed(seed)
 
-    print("Step 1: Scanning files and pairing images with labels...")
     label_files = sorted(glob.glob(os.path.join(label_dir, "*.txt")))
     
     images_with_labels = {}
@@ -78,7 +77,6 @@ def stratified_split(img_dir, label_dir, out_dir, train_ratio=0.7, val_ratio=0.2
     sorted_bases = sorted(list(images_with_labels.keys()), key=get_image_rarity_score, reverse=True)
 
     # Multi-label Stratified Assignment
-    print("Step 2: Assigning splits based on multi-label deficit scoring...")
     split_assignments = {}
     
     for base in sorted_bases:
@@ -108,7 +106,7 @@ def stratified_split(img_dir, label_dir, out_dir, train_ratio=0.7, val_ratio=0.2
             current_counts[best_split][c] += count
 
     #  Copy files to output dir
-    print("Step 3: Copying files to respective directories...")
+    print("Copying files")
     for split in ['train', 'val', 'test']:
         os.makedirs(os.path.join(out_dir, split, "images"), exist_ok=True)
         os.makedirs(os.path.join(out_dir, split, "labels"), exist_ok=True)
